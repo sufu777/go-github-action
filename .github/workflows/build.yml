@@ -16,12 +16,12 @@ jobs:
       
       - name: build go
         # -v 显示编译的包
-        run: go build -v .
+        run: go build -v . ; ls
       
       - name: test go
         # 运行当前目录和子目录下所有的测试
         run: go test -v ./...
-      - name: upload binary file
-        uses: actions/upload-artifact@v3.1.1
-        with:
-          path: go-github-action.exe
+#       - name: upload binary file
+#         uses: actions/upload-artifact@v3.1.1
+#         with:
+#           path: go-github-action.exe
