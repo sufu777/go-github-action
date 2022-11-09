@@ -14,8 +14,9 @@ jobs:
         with:
           go-version: 1.18
       - name: setup goos env
-        run: export GOOS=windows
-      
+        run: |
+          export GOOS=windows
+          echo "::set-env GOOS=windows::$GOOS"
       - name: build go
         # -v 显示编译的包
         run: go build -v .
