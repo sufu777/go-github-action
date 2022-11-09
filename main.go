@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-
 	"github.com/sufu777/go-github-action/core"
 )
 
