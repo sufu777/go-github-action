@@ -45,4 +45,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.TX_PRI_KEY }}
           REMOTE_HOST: ${{ secrets.TX_HOST }}
           REMOTE_USER: ${{ secrets.TX_USER }}
-          TARGET: ${{ TARGET }}
+          TARGET: ${{ secrets.TARGET }}
