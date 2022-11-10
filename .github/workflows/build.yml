@@ -13,16 +13,36 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.18
-      - name: build go
-        # -v 显示编译的包
-        run: GOOS=windows go build -v .
       
       - name: test go
         # 运行当前目录和子目录下所有的测试
         run: go test -v ./...
+        
+      - name: build go_windows
+        # -v 显示编译的包
+        run: GOOS=windows go build -v .
+        
+      - name: build go_linux
+        # -v 显示编译的包
+        run: GOOS=linux go build -v .
         
       - name: upload binary file
         uses: actions/upload-artifact@v3.1.1
         with:
           name: go-github-action_windows
           path: go-github-action.exe
+      
+      - name: upload binary file
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: go-github-action_linux
+          path: go-github-action
+      
+      - name: deploy to server
+        uses: easingthemes/ssh-deploy@v3.0.1
+        with: 
+          SOURCE: go-github-action
+          SSH_PRIVATE_KEY: ${{ secrets.TX_PRI_KEY }}
+          REMOTE_HOST: ${{ secrets.TX_HOST }}
+          REMOTE_USER: ${{ secrets.TX_USER }}
+          TARGET: ${{ TARGET }}
